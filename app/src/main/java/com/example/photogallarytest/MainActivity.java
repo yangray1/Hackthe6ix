@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,18 +29,35 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private OkHttpClient client;
-    public static final int PICK_IMAGE = 1;
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    //private OkHttpClient client;
+    //public static final int PICK_IMAGE = 1;
+    //public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    private void fetchData(){
-        client = new OkHttpClient.Builder().build();
-    }
+    //private void fetchData(){
+    //    client = new OkHttpClient.Builder().build();
+    //}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Log.d("tf","tf");
+        Button btn = (Button) findViewById(R.id.next);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent(MainActivity.this , onboard.class);
+                startActivity(intent);
+
+            }
+        });
+        //Log.d("tf","tfxcsddd");
+    }
+}
+/*
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -71,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // Do what you want to do with the response.
                         JavaSample getPercentDamaged = new JavaSample(responseStr);
-                        System.out.println("percent dmged : " + getPercentDamaged.percentTotalled);
+                        System.out.println("percent not dmged : " + getPercentDamaged.percentTotalled);
 
                     } else {
                     }
@@ -275,3 +294,4 @@ public class MainActivity extends AppCompatActivity {
 //    }
 //
 //}
+ */
