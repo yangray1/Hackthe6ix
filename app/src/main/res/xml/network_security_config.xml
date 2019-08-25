@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+<!--    <domain-config>-->
+<!--        <domain includeSubdomains="true">https://eastus.api.cognitive.microsoft.com</domain>-->
+<!--        <trust-anchors>-->
+<!--            <certificates src="system"/>-->
+<!--            <certificates src="user"/>-->
+<!--        </trust-anchors>-->
+<!--&lt;!&ndash;        <trust-anchors>&ndash;&gt;-->
+<!--&lt;!&ndash;            <certificates src="@raw/my_ca"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </trust-anchors>&ndash;&gt;-->
+<!--    </domain-config>-->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">https://eastus.api.cognitive.microsoft.com</domain>
+        <trust-anchors>
+                    <certificates src="system"/>
+                    <certificates src="user"/>
+                </trust-anchors>
+    </domain-config>
+</network-security-config>
