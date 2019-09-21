@@ -24,14 +24,11 @@ public class signUp extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(signUp.this , backCar.class);
-                intent.putExtra("Policy Number",pol.getText().toString());
-                intent.putExtra("VIN",vin.getText().toString());
-                intent.putExtra("Email",em.getText().toString());
-                startActivity(intent);
-                Log.d("rand",vin.getText().toString());
-
+            Intent intent = new Intent(signUp.this , backCar.class);
+            intent.putExtra("Policy Number",pol.getText().toString());
+            intent.putExtra("VIN",vin.getText().toString());
+            intent.putExtra("Email",em.getText().toString());
+            startActivity(intent);
             }
         });
     }

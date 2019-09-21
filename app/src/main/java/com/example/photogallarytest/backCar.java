@@ -34,7 +34,6 @@ public class backCar extends AppCompatActivity {
     public static final int PICK_IMAGE = 1;
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private ProgressDialog dialog;
-
     private void fetchData(){
         client = new OkHttpClient.Builder().build();
     }
@@ -61,6 +60,7 @@ public class backCar extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -101,14 +101,14 @@ public class backCar extends AppCompatActivity {
                         dialog.dismiss();
                         startActivity(intent);
 
-                    } else {
                     }
                 }
             },pickedImage);
         }
     }
+
     Call post(String url, Callback callback, Uri pickedImage) {
-        try{
+        try {
             final InputStream imageStream = getContentResolver().openInputStream(pickedImage);
             final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
             String str = encodeImage(selectedImage);
@@ -119,17 +119,17 @@ public class backCar extends AppCompatActivity {
                     .url("https://api.imgur.com/3/image")
                     .post(formBody)
                     .addHeader("Authorization", "Client-ID 0ece7e25c3c12c7")
-                    .addHeader("User-Agent","Otto")
+                    .addHeader("User-Agent", "Otto")
                     .build();
             Call call = client.newCall(request);
             call.enqueue(callback);
-            return call;}
-        catch (Exception e){
+            return call;
+        } catch (Exception e){
             return null;
         }
     }
-    private String encodeImage(Bitmap bm)
-    {
+
+    private String encodeImage(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] b = baos.toByteArray();
@@ -137,14 +137,4 @@ public class backCar extends AppCompatActivity {
 
         return encImage;
     }
-    private String getPercentTotalled(JavaSample getPercentDamaged){
-
-        String totalled = getPercentDamaged.getPercentTotalled();
-        while(totalled == null || totalled.equals("")){
-            totalled = getPercentDamaged.getPercentTotalled();
-            System.out.println("totalled : " + totalled);
-        }
-        return totalled;
-    }
-
 }

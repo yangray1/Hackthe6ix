@@ -15,18 +15,22 @@ public class Results extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        Button btn = (Button) findViewById(R.id.sendResults);
 
+        Button btn = (Button) findViewById(R.id.sendResults);
         TextView vin   = (TextView)findViewById(R.id.vin1);
         TextView pol   = (TextView)findViewById(R.id.policyNumber1);
         TextView em   = (TextView)findViewById(R.id.email1);
         TextView per   = (TextView)findViewById(R.id.percentDamaged);
         Intent temp=getIntent();
+
         vin.setText("VIN: " +temp.getStringExtra("VIN"));
         pol.setText("Policy Number: "+temp.getStringExtra("Policy Number"));
         em.setText("Email: "+temp.getStringExtra("Email"));
-        double percent=Double.parseDouble(temp.getStringExtra("Front"))+Double.parseDouble(temp.getStringExtra("Back"));
-        percent=percent/2;
+
+        double percent = Double.parseDouble(temp.getStringExtra("Front")) +
+                Double.parseDouble(temp.getStringExtra("Back"));
+        percent = percent/2;
+
         int roundedPercentage = 100 - (int)(percent * 100);
         String ok = roundedPercentage + "%";
         per.setText(ok);
@@ -35,10 +39,9 @@ public class Results extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(Results.this , MainActivity.class);
-                startActivity(intent);
-
+            // TODO Auto-generated method stub
+            Intent intent = new Intent(Results.this , MainActivity.class);
+            startActivity(intent);
             }
         });
     }

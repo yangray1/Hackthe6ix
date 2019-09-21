@@ -20,16 +20,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JavaSample
-{
+public class JavaSample {
     String url;
     String percentTotalled = "";
     public JavaSample(String url){
         this.url = url;
         call();
     }
-    public void call()
-    {
+
+    public void call(){
         CallHTTP callHTTP = new CallHTTP(url);
         callHTTP.execute();
         while (callHTTP.getStatus() != AsyncTask.Status.FINISHED){
@@ -37,15 +36,14 @@ public class JavaSample
     }
 
     class CallHTTP extends AsyncTask<String, Void, String> {
-
         private String url = "";
         public CallHTTP(String incomingUrl) {
             url = "{Url : '" + incomingUrl + "'}";
         }
 
         protected String doInBackground(String... urls) {
-
             HttpClient httpclient = new DefaultHttpClient();
+
             try {
                 URIBuilder builder = new URIBuilder("https://eastus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/afc04c3d-0519-417b-8e78-c5c3810d48a9/url");
 
@@ -74,13 +72,10 @@ public class JavaSample
 
                     String out =  jsonObject.getString("Probability");
                     return out;
-//                    return "";
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e);
             }
-
             return null;
         }
 
@@ -88,19 +83,9 @@ public class JavaSample
             storeValue(percentTotaled);
         }
     }
-    private String parsePercentageTotaled(String json) throws JSONException {
-        JSONObject jsonObject = new JSONObject(json);
-        jsonObject=new JSONObject(jsonObject.getString("Predictions"));
-        String out =  jsonObject.getString("Probability");
-        return out;
-    }
+
     private void storeValue(String valueOfTotaled) {
         //handle value
         this.percentTotalled = valueOfTotaled;
     }
-
-    public String getPercentTotalled(){
-        return percentTotalled;
-    }
-
 }
